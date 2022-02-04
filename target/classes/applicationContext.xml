@@ -7,40 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-<context:property-placeholder location="classpath:musicPlayer.properties"/>
-
-     <bean id = "musicBean1"
-     class ="by.pavel.ClassicalMusic"
-           scope="singleton"
-           init-method="inMethod"
-         destroy-method="detrMethod"
-         factory-method="getClassicalMusic">
-     </bean>
-
-    <bean id = "musicBean2"
-          class ="by.pavel.RockMusic"
-          scope ="singleton">
-    </bean>
-
-    <bean id = "musicBean3"
-          class ="by.pavel.PopMusic">
-    </bean>
-
-    <bean id = "musicPlayer"
-          class ="by.pavel.MusicPlayer"
-          scope ="prototype">
-        <constructor-arg ref="musicBean2"/>
-        <property name="musicList" >
-                <list>
-                    <ref bean="musicBean1"/>
-                    <ref bean="musicBean2"/>
-                    <ref bean="musicBean3"/>
-                </list>
-        </property>
-        <property name="music" ref ="musicBean3"/>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+<context:component-scan base-package="by.pavel"/>
 
 
 </beans>
